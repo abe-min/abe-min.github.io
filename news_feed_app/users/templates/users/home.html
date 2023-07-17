@@ -1,0 +1,104 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome, {{user.username.title|default:'Guest'}}</h1>
+        <p class="lead">
+            Welcome to the <b>Mind Benders News Feed App</b> 
+        </p>
+        
+        <hr class="my-4">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                <a class="btn btn-primary btn-lg" href="{% url 'logout' %}" role="button">Logout</a>
+            {% else %}
+                <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">Sign in</a>
+                
+            {% endif %}
+            <!--<a href="/" class="nav-item nav-link" style="float: right;"> Refresh </a>-->
+            <input type="button" value = "Refresh" onclick="history.go(0)" style="float: right;"/>
+        </p>
+        <div class="container">
+            
+            <a href="/" class="nav-item nav-link" style="float: left;"> Home </a>
+            <a href="{% url 'users-home' %}?category=General" class="nav-item nav-link" style="float: left;"> General </a>
+            <a href="{% url 'users-home' %}?category=Business" class="nav-item nav-link" style="float: left;"> Business </a>
+            <a href="{% url 'users-home' %}?category=Entertainment" class="nav-item nav-link" style="float: left;"> Entertainment </a>
+            <a href="{% url 'users-home' %}?category=health" class="nav-item nav-link" style="float: left;"> Health </a>
+            <a href="{% url 'users-home' %}?category=Science" class="nav-item nav-link" style="float: left;"> Science </a>
+            <a href="{% url 'users-home' %}?category=Sports" class="nav-item nav-link" style="float: left;"> Sports </a>
+            <a href="{% url 'users-home' %}?category=technology" class="nav-item nav-link" style="float: left;"> Technology </a>
+
+
+
+
+            <br>
+
+
+
+        
+
+
+
+        
+
+
+
+
+        <form action="" method="get">
+            <div class="form-group">
+              <input type="text" name="searchkeyword" class="form-control" id="keywordsearch" aria-describedby="emailHelp" placeholder="Enter keyword">
+              <small id="emailHelp" class="form-text text-muted">To search for multiple keyword, you can use the AND / OR / NOT keywords. ie ethereum OR litecoin</small>
+            
+            <button type="submit" class="btn btn-primary" style="float: right;">Search</button>
+        </div>
+        </form>
+
+        </div>
+        <p>
+		<i class="glyphicon glyphicon-refresh"></i>
+		<i class="glyphicon glyphicon-refresh" style="font-size:20px"></i>
+		<i class="glyphicon glyphicon-refresh" style="font-size:30px"></i>
+		<i class="glyphicon glyphicon-refresh" style="font-size:40px"></i>
+		<i class="glyphicon glyphicon-refresh" style="font-size:50px"></i>
+	</p>
+    </div>
+
+
+    
+
+        {% for i in articles %}
+       
+        <div class= "container-fluid">
+        <div class="card rounded shadow-lg m-2" style="width: 65rem;">
+            <div class="card-body">
+            <p class="card-text">{{ i.author }}</p>
+            <h5 class="card-title"><a href="{{ i.url }}">{{ i.title }} </a></h5>
+            <p class="card-title">{{ i.source.name }}</p>
+            <p class="card-text">{{ i.description }}</p>
+            <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+            <hr>
+            <small>{category}</small>
+            <!--<a href="{{ i.url }}" target="_blank" class="btn btn-success m-1">See News</a>-->
+            </div>
+        </div>
+        </div>
+      {% endfor %}   
+   
+    </div> 
+
+    <nav aria-label="Page navigation" style="float: right;">
+        <ul class="pagination" style="float: right;">
+          
+          <li class="page-item"><a class="page-link" href="{% url 'users-home' %}?page_num=1">1</a></li>
+          <li class="page-item"><a class="page-link" href="{% url 'users-home' %}?page_num=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="{% url 'users-home' %}?page_num=3">3</a></li>
+          <li class="page-item"><a class="page-link" href="{% url 'users-home' %}?page_num=4">4</a></li>
+          <li class="page-item"><a class="page-link" href="{% url 'users-home' %}?page_num=5">5</a></li>
+    
+        </ul>
+      </nav>
+   
+</div>
+{% endblock content %}
+
