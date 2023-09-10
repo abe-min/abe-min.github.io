@@ -1,6 +1,7 @@
 # Connect Four 
 
 This is an implementation of the popular game Connect Four using HTML, CSS, and JavaSript, and jQuery.
+![Try Game](https://abe-min.github.io/connect_four/connect_four.html "Try Game")
 
 **Game Playing Instructions**:
 1. clone reposotory: `git clone https://github.com/abe-min/Connect_Four`
